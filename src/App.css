@@ -85,19 +85,7 @@ header {
   margin-left: 10px;
 }
 
-.search-bar button i {
-  font-size: 18px;
-  color: #000;
-}
-
-.bottom-header {
-  background-color: #f7f7f7;
-  text-align: center;
-  padding: 10px;
-}
-
-.bottom-header p {
-  color: #333;
-  font-size: 16px;
-  font-weight: bold;
+.search-bar .fav img {
+  width: 3vh; 
+  margin-left: 10px; 
 }
