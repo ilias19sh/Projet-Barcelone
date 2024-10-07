@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: directus
+      POSTGRES_PASSWORD: directus_password
+      POSTGRES_DB: directus_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  directus:
+    image: directus/directus
+    restart: always
+    environment:
+      DIRECTUS_DATABASE_CLIENT: pg
+      DIRECTUS_DATABASE_HOST: db
+      DIRECTUS_DATABASE_PORT: 5432
+      DIRECTUS_DATABASE_NAME: directus_db
+      DIRECTUS_DATABASE_USER: directus
+      DIRECTUS_DATABASE_PASSWORD: directus_password
+      ADMIN_EMAIL: admin@example.com
+      ADMIN_PASSWORD: admin_password
+    depends_on:
+      - db
+    ports:
+      - 8055:8055
+
+volumes:
+  pgdata:
