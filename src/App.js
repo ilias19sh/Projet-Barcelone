@@ -1,7 +1,39 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+  const carouselImages = [
+    "https://www.footpack.fr/wp-content/uploads/2023/06/maillot-barca-2023-domicile-nike-1.webp",
+    "https://www.sneakerstyle.fr/wp-content/uploads/2023/08/patta-x-nike-air-max-plus-tn-fc-barcelona-FN8260-001-01.webp",
+    "https://via.placeholder.com/1920x800?text=Image+3",
+    "https://via.placeholder.com/1920x800?text=Image+4"
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const getTransformValue = () => {
+    return `translateX(-${currentImageIndex * 100}%)`;
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? carouselImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextImage();
+    }, 8000); 
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="App">
       <header>
@@ -27,7 +59,6 @@ function App() {
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/2560px-Logo_NIKE.svg.png" alt="Nike Logo" />
             </a>
           </div>
-
           <nav className="nav-links">
             <ul>
               <li><a href="#">New Releases</a></li>
@@ -39,27 +70,37 @@ function App() {
           </nav>
 
           <div className="search-bar">
-            <input
-              type="text"
-              placeholder="Rechercher un produit"
-            />
+            <input type="text" placeholder="Rechercher un produit" />
             <button type="submit"><i className="fa fa-search"></i></button>
             <div className="fav" style={{ marginLeft: '10px' }}>
               <a href="#">
-                <img 
-                  src="https://cdn-icons-png.flaticon.com/512/812/812327.png" 
-                  alt="Favorites Icon" 
-                  style={{ width: '3vh' }} 
-                />
+                <img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="Favorites Icon" style={{ width: '3vh' }} />
               </a>
             </div>
           </div>
         </div>
 
-        <div className="bottom-header">
-          <p>Promo spéciale : Livraison gratuite pour toute commande supérieure à 100€ !</p>
-        </div>
+        
       </header>
+
+      <div className="carousel-container">
+        <div className="carousel" style={{ transform: getTransformValue() }}>
+          {carouselImages.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`Slide ${index + 1}`}
+              className="carousel-image"
+            />
+          ))}
+        </div>
+        <button className="prev" onClick={prevImage}>
+          
+        </button>
+        <button className="next" onClick={nextImage}>
+          
+        </button>
+      </div>
     </div>
   );
 }

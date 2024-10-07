@@ -14,8 +14,6 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  
-  
 }
 
 .logo img {
@@ -86,6 +84,50 @@ header {
 }
 
 .search-bar .fav img {
-  width: 3vh; 
-  margin-left: 10px; 
+  width: 3vh;
+  margin-left: 10px;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 1s ease-in-out; /* Transition pour le slide */
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-image {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+button.prev, button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+button.prev {
+  left: 10px;
+}
+
+button.next {
+  right: 10px;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
