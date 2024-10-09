@@ -20,37 +20,37 @@ function App() {
   const [currentShoesIndex, setCurrentShoesIndex] = useState(0);
 
   const getTransformValue = () => `translateX(-${currentImageIndex * 100}%)`;
-  const getShoesTransformValue = () => `translateX(-${currentShoesIndex * 25}%)`; // Adjusted to move 25% per shoe
+  const getShoesTransformValue = () => `translateX(-${currentShoesIndex * 25}%)`; 
 
-  // Function to handle the next image in the main carousel
+  
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1
     );
   };
 
-  // Function to handle the previous image in the main carousel
+ 
   const prevImage = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === 0 ? carouselImages.length - 1 : prevIndex - 1
     );
   };
 
-  // Function to handle the next shoes in the shoes carousel
+  
   const nextShoes = () => {
     setCurrentShoesIndex((prevIndex) =>
       prevIndex >= shoesImages.length - 4 ? 0 : prevIndex + 1
     );
   };
 
-  // Function to handle the previous shoes in the shoes carousel
+  
   const prevShoes = () => {
     setCurrentShoesIndex((prevIndex) =>
       prevIndex === 0 ? shoesImages.length - 4 : prevIndex - 1
     );
   };
 
-  // Auto-slide for the main carousel
+  
   useEffect(() => {
     const interval = setInterval(() => {
       nextImage();
@@ -121,7 +121,7 @@ function App() {
         <button className="next" onClick={nextImage}>›</button>
       </div>
 
-      {/* Shoes Carousel */}
+      {}
       <div className="shoes-carousel-container">
         <h2>Nike Shoes</h2>
         <div className="shoes-carousel" style={{ transform: getShoesTransformValue() }}>

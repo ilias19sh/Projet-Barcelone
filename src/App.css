@@ -143,12 +143,12 @@ button:hover {
 .shoes-carousel {
   display: flex;
   transition: transform 0.8s ease-in-out;
-  width: calc(100% * 2) /* Ajustez en fonction du nombre d'images (par exemple, si vous avez plus d'images, mettez 6 ou plus) */
+  width: calc(100% * 2) 
 }
 
 .shoes-carousel-image {
-  width: 14.66%; /* Réduit la taille des images pour en afficher 6 à la fois (100% / 6) */
-  padding: 10px;  /* Réduit l'espace entre les images */
+  width: 14.66%; 
+  padding: 10px;  
   box-sizing: border-box;
   object-fit: cover;
 }
