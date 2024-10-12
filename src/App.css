@@ -210,8 +210,8 @@ h2 {
 }
 .sports-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Création d'une grille responsive */
-  gap: 20px; /* Espace entre les cartes */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  gap: 20px;
   padding: 40px;
 }
 
@@ -261,3 +261,16 @@ h2 {
 .overlay button:hover {
   background-color: #f0f0f0;
 }
+.sports-section {
+  padding: 20px;
+  margin-top: 50px;
+  text-align: left;
+}
+
+.sports-title {
+  text-align: left; 
+  margin-left: 20px; 
+  font-size: 24px;
+  font-weight: bold;
+}
+

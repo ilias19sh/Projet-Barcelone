@@ -17,10 +17,10 @@ function App() {
   ];
 
   const sports = [
-    { name: "", image: "https://assets-fr.imgfoot.com/barca-65da1f2d62919.jpg" },
-    { name: "Volley", image: "https://via.placeholder.com/200?text=Volley" },
-    { name: "Basket", image: "https://via.placeholder.com/200?text=Basket" },
-    { name: "Handball", image: "https://via.placeholder.com/200?text=Handball" },
+    { name: "Football", image: "https://assets-fr.imgfoot.com/barca-65da1f2d62919.jpg" },
+    { name: "Volleyball", image: "https://www.fcbarcelona.com/photo-resources/2024/03/20/194a8544-ecb8-4b70-8238-db5b1a6087e7/2024-02-25_EQUIPSVOLEIMASCULI_06.JPG?width=1200&height=750" },
+    { name: "Basket", image: "https://store.fcbarcelona.com/cdn/shop/collections/VO231113A42398.jpg?v=1727078777" },
+    { name: "Handball", image: "https://img.lemde.fr/2021/06/13/0/0/4759/3173/664/0/75/0/ccdcce4_733d6da0852a4ae089b7608dab335e79-733d6da0852a4ae089b7608dab335e79-0.jpg" },
     { name: "Fournitures scolaires", image: "https://via.placeholder.com/200?text=Fournitures+Scolaires" }
   ];
 
@@ -108,7 +108,7 @@ function App() {
         </div>
       </header>
 
-      {/* Carousel */}
+      {}
       <div className="carousel-container">
         <div className="carousel" style={{ transform: getTransformValue() }}>
           {carouselImages.map((image, index) => (
@@ -124,7 +124,7 @@ function App() {
         <button className="next" onClick={nextImage}>›</button>
       </div>
 
-      {/* Shoes Carousel */}
+      {}
       <div className="shoes-carousel-container">
         <h2>Nike Shoes</h2>
         <div className="shoes-carousel" style={{ transform: getShoesTransformValue() }}>
@@ -141,19 +141,23 @@ function App() {
         <button className="next-shoes" onClick={nextShoes}>›</button>
       </div>
 
-      {/* Sports Grid */}
-      <div className="sports-grid">
-        {sports.map((sport, index) => (
-          <div className="sport-card" key={index} style={{ backgroundImage: `url(${sport.image})` }}>
-            <div className="overlay">
-              <h3>{sport.name}</h3>
-              <button>Shop {sport.name}</button>
+      {}
+      <div className="sports-section">
+        <h2 className="sports-title">Our Sports</h2>
+        <div className="sports-grid">
+          {sports.map((sport, index) => (
+            <div className="sport-card" key={index} style={{ backgroundImage: `url(${sport.image})` }}>
+              <div className="overlay">
+                <h3>{sport.name}</h3>
+                <button>Shop {sport.name}</button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
 export default App;
+
