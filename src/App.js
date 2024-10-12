@@ -16,41 +16,44 @@ function App() {
     "https://www.kicksusa.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/N/I/NIKE_SNEAKER_002_NIAR9293_001.png"
   ];
 
+  const sports = [
+    { name: "", image: "https://assets-fr.imgfoot.com/barca-65da1f2d62919.jpg" },
+    { name: "Volley", image: "https://via.placeholder.com/200?text=Volley" },
+    { name: "Basket", image: "https://via.placeholder.com/200?text=Basket" },
+    { name: "Handball", image: "https://via.placeholder.com/200?text=Handball" },
+    { name: "Fournitures scolaires", image: "https://via.placeholder.com/200?text=Fournitures+Scolaires" }
+  ];
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentShoesIndex, setCurrentShoesIndex] = useState(0);
 
   const getTransformValue = () => `translateX(-${currentImageIndex * 100}%)`;
-  const getShoesTransformValue = () => `translateX(-${currentShoesIndex * 25}%)`; 
+  const getShoesTransformValue = () => `translateX(-${currentShoesIndex * 25}%)`;
 
-  
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1
     );
   };
 
- 
   const prevImage = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === 0 ? carouselImages.length - 1 : prevIndex - 1
     );
   };
 
-  
   const nextShoes = () => {
     setCurrentShoesIndex((prevIndex) =>
       prevIndex >= shoesImages.length - 4 ? 0 : prevIndex + 1
     );
   };
 
-  
   const prevShoes = () => {
     setCurrentShoesIndex((prevIndex) =>
       prevIndex === 0 ? shoesImages.length - 4 : prevIndex - 1
     );
   };
 
-  
   useEffect(() => {
     const interval = setInterval(() => {
       nextImage();
@@ -105,7 +108,7 @@ function App() {
         </div>
       </header>
 
-      {/* Carousel Section */}
+      {/* Carousel */}
       <div className="carousel-container">
         <div className="carousel" style={{ transform: getTransformValue() }}>
           {carouselImages.map((image, index) => (
@@ -121,7 +124,7 @@ function App() {
         <button className="next" onClick={nextImage}>›</button>
       </div>
 
-      {}
+      {/* Shoes Carousel */}
       <div className="shoes-carousel-container">
         <h2>Nike Shoes</h2>
         <div className="shoes-carousel" style={{ transform: getShoesTransformValue() }}>
@@ -136,6 +139,18 @@ function App() {
         </div>
         <button className="prev-shoes" onClick={prevShoes}>‹</button>
         <button className="next-shoes" onClick={nextShoes}>›</button>
+      </div>
+
+      {/* Sports Grid */}
+      <div className="sports-grid">
+        {sports.map((sport, index) => (
+          <div className="sport-card" key={index} style={{ backgroundImage: `url(${sport.image})` }}>
+            <div className="overlay">
+              <h3>{sport.name}</h3>
+              <button>Shop {sport.name}</button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

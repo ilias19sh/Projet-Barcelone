@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: Arial, sans-serif;
+}
+
 header {
   width: 100%;
 }
@@ -22,12 +26,12 @@ header {
 }
 
 .nike img {
-  width : 10vh;
+  width: 10vh;
   margin-left: 4vh;
 }
 
 .fav img {
-  width : 3vh;
+  width: 3vh;
   margin-left: 4vh;
 }
 
@@ -92,20 +96,31 @@ header {
   position: relative;
   width: 100%;
   height: 70vh;
+  perspective: 1000px; 
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
 }
 
 .carousel {
   display: flex;
-  transition: transform 1s ease-in-out; /* Transition pour le slide */
+  transition: transform 1s ease-in-out;
   width: 100%;
   height: 100%;
+  transform-style: preserve-3d; 
 }
 
 .carousel-image {
   min-width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-image:hover {
+  transform: scale(1.1) rotateY(10deg); 
 }
 
 button.prev, button.next {
@@ -115,7 +130,7 @@ button.prev, button.next {
   background-color: rgba(0, 0, 0, 0.5);
   border: none;
   color: white;
-  padding: 10px;
+  padding: 15px;
   cursor: pointer;
   z-index: 1;
 }
@@ -132,26 +147,36 @@ button:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-
 .shoes-carousel-container {
   position: relative;
   width: 100%;
   margin-top: 50px;
   overflow: hidden;
+  perspective: 1000px;
 }
 
 .shoes-carousel {
   display: flex;
   transition: transform 0.8s ease-in-out;
-  width: calc(100% * 2) 
+  width: calc(100% * 2);
+  transform-style: preserve-3d;
 }
 
 .shoes-carousel-image {
-  width: 14.66%; 
-  padding: 10px;  
-  box-sizing: border-box;
-  object-fit: cover;
+  width: 150px; 
+  height: 150px; 
+  padding: 10px;
+  object-fit: cover; 
+  background-color: #f0f0f0; 
+  border-radius: 10px; 
+  margin-right: 20px;
+  transition: transform 0.5s ease-in-out;
 }
+
+.shoes-carousel-image:hover {
+  transform: scale(1.1) rotateY(10deg);
+}
+
 
 button.prev-shoes, button.next-shoes {
   position: absolute;
@@ -160,7 +185,7 @@ button.prev-shoes, button.next-shoes {
   background-color: rgba(0, 0, 0, 0.5);
   border: none;
   color: white;
-  padding: 10px;
+  padding: 15px;
   cursor: pointer;
   z-index: 1;
 }
@@ -175,4 +200,64 @@ button.next-shoes {
 
 button:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+.sports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Création d'une grille responsive */
+  gap: 20px; /* Espace entre les cartes */
+  padding: 40px;
+}
+
+.sport-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sport-card:hover {
+  transform: scale(1.05);
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5); 
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.overlay h3 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.overlay button {
+  padding: 10px 20px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.overlay button:hover {
+  background-color: #f0f0f0;
 }
