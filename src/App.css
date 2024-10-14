@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: Arial, sans-serif;
 }
@@ -18,6 +17,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  
+  
 }
 
 .logo img {
@@ -26,12 +27,12 @@ header {
 }
 
 .nike img {
-  width: 10vh;
+  width : 10vh;
   margin-left: 4vh;
 }
 
 .fav img {
-  width: 3vh;
+  width : 3vh;
   margin-left: 4vh;
 }
 
@@ -88,10 +89,9 @@ header {
 }
 
 .search-bar .fav img {
-  width: 3vh;
-  margin-left: 10px;
+  width: 3vh; 
+  margin-left: 10px; 
 }
-
 .carousel-container {
   position: relative;
   width: 100%;
