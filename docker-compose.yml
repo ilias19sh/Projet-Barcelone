@@ -1,3 +1,4 @@
+docker-compose.yml //
 version: '3.1'
 
 services:
@@ -15,6 +16,8 @@ services:
     image: directus/directus
     restart: always
     environment:
+      DIRECTUS_CORS_ORIGIN: http://localhost:3000
+      DIRECTUS_CORS_ALLOW_CREDENTIALS: true
       DIRECTUS_DATABASE_CLIENT: pg
       DIRECTUS_DATABASE_HOST: db
       DIRECTUS_DATABASE_PORT: 5432
@@ -23,6 +26,9 @@ services:
       DIRECTUS_DATABASE_PASSWORD: directus_password
       ADMIN_EMAIL: admin@example.com
       ADMIN_PASSWORD: admin_password
+      CORS_ENABLED: true
+      CORS_ORIGIN: http://localhost:3000
+
     depends_on:
       - db
     ports:

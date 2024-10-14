@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "name": "Nike Air Max TN FC Barcelone",
+      "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQVDM6lEMSzK5b837P3LT4hbVVDyxqPdGydXpOkH0S1b5ZoMTJAbIlwNYdomsijZL1aU1bhje-Q8aJZWbS_JU_345aCOl5GM59URTjyDg7oY2fZn-sZY1rRukGUSUnnP5IceTcKfeI",
+      "price": 190,
+      "description": "Inspirée des couleurs de l'équipe FC Barcelone, cette Nike Air Max TN propose confort et style.",
+      "sizes": ["40", "41", "42", "43", "44"]
+    },
+    {
+      "id": 2,
+      "name": "Maillot Home FC Barcelone 2023/24",
+      "image": "https://www.footpack.fr/wp-content/uploads/2023/06/maillot-barca-2023-domicile-nike-1.webp",
+      "price": 90,
+      "description": "Maillot domicile officiel du FC Barcelone pour la saison 2023/24.",
+      "sizes": ["S", "M", "L", "XL"]
+    },
+    {
+      "id": 3,
+      "name": "Nike Zoom Vapor Pro 2 FC Barcelone",
+      "image": "https://static.nike.com/a/images/t_default/e62a8575-6c96-4532-9780-63fc64d75a48/nikecourt-zoom-vapor-pro-2-hard-court-tennis-shoes-pvqmgl.png",
+      "price": 160,
+      "description": "Tennis ultra-légères avec un design exclusif aux couleurs du Barça.",
+      "sizes": ["39", "40", "41", "42"]
+    }
+  ]
+  
