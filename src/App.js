@@ -24,6 +24,12 @@ function App() {
     { name: "Fournitures scolaires", image: "https://via.placeholder.com/200?text=Fournitures+Scolaires" }
   ];
 
+  const categories = [
+    { name: "Men", image: "https://cdn.resfu.com/media/img_news/agencia-efe_multimedia_55011352025.multimedia.photos.55011352025004.file.jpg?size=1000x&lossy=1" },
+    { name: "Women", image: "https://store.fcbarcelona.com/cdn/shop/files/GP26058-Mejorado-NR.jpg?v=1692178231&width=1946" },
+    { name: "Children", image: "https://store.fcbarcelona.com/cdn/shop/files/FN9233-456_3_cc1aefd6-0b90-4b2d-9021-319e7df197ea.jpg?v=1721278167" }
+  ];
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentShoesIndex, setCurrentShoesIndex] = useState(0);
 
@@ -62,7 +68,6 @@ function App() {
   }, []);
 
   return (
-    
     <div className="App">
       <header>
         <div className="top-header">
@@ -109,7 +114,6 @@ function App() {
         </div>
       </header>
 
-      {}
       <div className="carousel-container">
         <div className="carousel" style={{ transform: getTransformValue() }}>
           {carouselImages.map((image, index) => (
@@ -125,7 +129,6 @@ function App() {
         <button className="next" onClick={nextImage}>›</button>
       </div>
 
-      {}
       <div className="shoes-carousel-container">
         <h2>Nike Shoes</h2>
         <div className="shoes-carousel" style={{ transform: getShoesTransformValue() }}>
@@ -142,7 +145,6 @@ function App() {
         <button className="next-shoes" onClick={nextShoes}>›</button>
       </div>
 
-      {}
       <div className="sports-section">
         <h2 className="sports-title">Our Sports</h2>
         <div className="sports-grid">
@@ -156,10 +158,54 @@ function App() {
           ))}
         </div>
       </div>
-    </div>
 
+      <div className="categories-section">
+        <h2 className="categories-title">Nos Catégories</h2>
+        <div className="categories-grid">
+          {categories.map((category, index) => (
+            <div className="category-card" key={index} style={{ backgroundImage: `url(${category.image})` }}>
+              <div className="category-overlay">
+                <h3>{category.name}</h3>
+                <button>Voir {category.name}</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <footer className="footer">
+        <div className="footer-container">
+          <div className="footer-section">
+            <h3>Suivez-nous</h3>
+            <ul className="footer-links">
+              <li><a href="#">Cartes cadeaux</a></li>
+              <li><a href="#">Trouver un magasin</a></li>
+              <li><a href="#">Journal Nike</a></li>
+              <li><a href="#">Devenez membre</a></li>
+              <li><a href="#">Commentaire</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-section">
+            <h3>Liens utiles</h3>
+            <ul className="footer-links">
+              <li><a href="#">Conditions d'utilisation</a></li>
+              <li><a href="#">Politique de confidentialité</a></li>
+              <li><a href="#">Aide</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-section">
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; 2024 FC Barcelona. Tous droits réservés.</p>
+        </div>
+      </footer>
+
+      
+    </div>
   );
 }
 
 export default App;
-
