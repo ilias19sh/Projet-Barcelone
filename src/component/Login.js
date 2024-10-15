@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./Login.css"; 
-import { postToDirectus, loginUser } from "./api"; // Ajout de loginUser
+import { postToDirectus, loginUser } from "./api"; 
 
 const Login = () => {
   const [view, setView] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [firstName, setFirstName] = useState(""); // Ajout d'un état pour first_name
+  const [firstName, setFirstName] = useState(""); 
 
   const handleForgotPassword = async (e) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ const Login = () => {
 
 const handleSignUp = async () => {
     try {
-        const response = await postToDirectus(userData, 'clients'); // La collection doit être une chaîne
+        const response = await postToDirectus(userData, 'clients'); 
         console.log('Utilisateur créé avec succès:', response);
     } catch (error) {
         console.error('Erreur lors de la création de l\'utilisateur:', error);
@@ -37,10 +37,10 @@ handleSignUp();
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await loginUser(email, password); // Appel à la fonction de connexion
+      const response = await loginUser(email, password); 
       console.log("Utilisateur connecté:", response);
       alert("Connexion réussie !");
-      // Ici, tu peux ajouter une logique pour rediriger l'utilisateur vers une autre page ou stocker des informations d'utilisateur
+     
     } catch (error) {
       console.error("Erreur lors de la connexion:", error);
       alert("Erreur de connexion. Veuillez vérifier vos identifiants.");
@@ -50,7 +50,7 @@ handleSignUp();
   const renderLoginForm = () => (
     <div className="form-container">
       <h2>Connexion</h2>
-      <form onSubmit={handleLogin}> {/* Ajout de handleLogin ici */}
+      <form onSubmit={handleLogin}> {}
         <div>
           <label>Email</label>
           <input

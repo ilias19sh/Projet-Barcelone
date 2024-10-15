@@ -324,7 +324,7 @@ h2 {
 
 .footer {
   background-color: lightgrey; 
-  color: white; 
+  color: black; 
   padding: 40px 20px; 
   text-align: center; 
 }
@@ -353,7 +353,7 @@ h2 {
 }
 
 .footer-links a {
-  color: white; 
+  color: black; 
   text-decoration: none; 
 }
 
@@ -363,3 +363,128 @@ h2 {
   font-size: 0.9rem; 
 }
 
+/* Main container for the product details */
+.product-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+}
+
+/* Left section - Filters */
+.product-filters {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-filters h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.product-filters label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.product-filters input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Center section - Main product info */
+.product-main {
+  flex: 2;
+  padding: 20px;
+  text-align: center;
+}
+
+.product-main h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.product-main img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.product-main p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Right section - Sizes and Add to Cart */
+.product-sizes {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.product-sizes h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.sizes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.size-button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.size-button.selected {
+  background-color: #333;
+  color: #fff;
+}
+
+.size-button:hover {
+  background-color: #f0f0f0;
+}
+
+.add-to-cart-button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #FF6F61;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.add-to-cart-button:hover {
+  background-color: #ff5a4f;
+}
