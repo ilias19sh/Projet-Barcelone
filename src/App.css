@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: Arial, sans-serif;
 }
@@ -17,8 +18,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  
-  
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
 }
 
 .logo img {
@@ -27,12 +27,12 @@ header {
 }
 
 .nike img {
-  width : 10vh;
+  width: 10vh;
   margin-left: 4vh;
 }
 
 .fav img {
-  width : 3vh;
+  width: 3vh;
   margin-left: 4vh;
 }
 
@@ -55,6 +55,7 @@ header {
   align-items: center;
   padding: 10px 20px;
   border-bottom: 1px solid #eee;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
 }
 
 .nav-links ul {
@@ -72,6 +73,7 @@ header {
 .search-bar {
   display: flex;
   align-items: center;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .search-bar input {
@@ -79,6 +81,7 @@ header {
   border: 1px solid #ccc;
   border-radius: 20px;
   outline: none;
+  margin-bottom: 10px; /* Add some space for mobile */
 }
 
 .search-bar button {
@@ -89,14 +92,15 @@ header {
 }
 
 .search-bar .fav img {
-  width: 3vh; 
-  margin-left: 10px; 
+  width: 3vh;
+  margin-left: 10px;
 }
+
 .carousel-container {
   position: relative;
   width: 100%;
   height: 70vh;
-  perspective: 1000px; 
+  perspective: 1000px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -109,7 +113,7 @@ header {
   transition: transform 1s ease-in-out;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d; 
+  transform-style: preserve-3d;
 }
 
 .carousel-image {
@@ -120,10 +124,11 @@ header {
 }
 
 .carousel-image:hover {
-  transform: scale(1.1) rotateY(10deg); 
+  transform: scale(1.1) rotateY(10deg);
 }
 
-button.prev, button.next {
+button.prev,
+button.next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -160,15 +165,17 @@ button:hover {
   transition: transform 0.8s ease-in-out;
   width: calc(100% * 2);
   transform-style: preserve-3d;
+  margin-left: 100px;
+  margin-bottom: 30px;
 }
 
 .shoes-carousel-image {
-  width: 300px; 
-  height: 300px; 
+  width: 400px;
+  height: 250px;
   padding: 10px;
-  object-fit: cover; 
-  background-color: #f0f0f0; 
-  border-radius: 10px; 
+  object-fit: cover;
+  border: solid rgb(227, 222, 222) 7px;
+  border-radius: 10px;
   margin-right: 20px;
   transition: transform 0.5s ease-in-out;
 }
@@ -177,8 +184,8 @@ button:hover {
   transform: scale(1.1) rotateY(10deg);
 }
 
-
-button.prev-shoes, button.next-shoes {
+button.prev-shoes,
+button.next-shoes {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -208,9 +215,10 @@ h2 {
   margin-bottom: 20px;
   color: #333;
 }
+
 .sports-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   padding: 40px;
 }
@@ -233,7 +241,7 @@ h2 {
 }
 
 .overlay {
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
   display: flex;
@@ -261,6 +269,7 @@ h2 {
 .overlay button:hover {
   background-color: #f0f0f0;
 }
+
 .sports-section {
   padding: 20px;
   margin-top: 50px;
@@ -268,11 +277,13 @@ h2 {
 }
 
 .sports-title {
-  text-align: left; 
-  margin-left: 20px; 
+  text-align: left;
+  margin-left: 20px;
   font-size: 24px;
   font-weight: bold;
 }
+
+/* Section principale */
 .categories-section {
   padding: 20px;
   text-align: center;
@@ -281,210 +292,112 @@ h2 {
 .categories-title {
   font-size: 2rem;
   margin-bottom: 20px;
+  font-weight: bold;
+  color: #333;
 }
 
+/* Grille des catégories */
 .categories-grid {
-  display: flex; 
-  justify-content: center; 
-  gap: 20px; 
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
+/* Cartes des catégories */
 .category-card {
-  width: 300px; 
-  height: 700px; 
-  background-size: cover; 
-  background-position: center; 
-  position: relative; 
-  border-radius: 10px; 
-  transition: transform 0.3s; 
+  width: 300px;
+  height: 450px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
 }
 
 .category-card:hover {
-  transform: scale(1.05); 
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Overlay avec filtre noir et transition */
 .category-overlay {
-  position: absolute; 
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  color: white;
-  opacity: 0; 
-  transition: opacity 0.3s; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .category-card:hover .category-overlay {
-  opacity: 3; 
+  opacity: 1;
+}
+
+/* Titre de la catégorie */
+.category-overlay h3 {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  color: white;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Bouton d'action stylé */
+.action-button {
+  padding: 10px 20px;
+  background-color: #ff5a5f;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Effet hover avec animation */
+.action-button:hover {
+  background-color: #ff7a7f;
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(255, 90, 95, 0.3);
 }
 
 .footer {
-  background-color: lightgrey; 
-  color: black; 
-  padding: 40px 20px; 
-  text-align: center; 
-}
-
-.footer-container {
-  display: flex; 
-  justify-content: space-around; 
-  flex-wrap: wrap; 
-  margin-bottom: 20px;
-}
-
-.footer-section {
-  flex: 1; 
-  min-width: 150px; 
-  margin: 0 20px; 
-}
-
-.footer-section h3 {
-  margin-bottom: 10px; 
-}
-
-.footer-links {
-  list-style: none; 
-  padding: 0; 
-  margin: 10px 0; 
-}
-
-.footer-links a {
-  color: black; 
-  text-decoration: none; 
-}
-
-
-.footer-bottom {
-  margin-top: 30px;
-  font-size: 0.9rem; 
-}
-
-/* Main container for the product details */
-.product-details {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #f9f9f9;
-}
-
-/* Left section - Filters */
-.product-filters {
-  flex: 1;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.product-filters h3 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.product-filters label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #333;
-}
-
-.product-filters input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-/* Center section - Main product info */
-.product-main {
-  flex: 2;
-  padding: 20px;
+  background-color: lightgrey;
+  color: black;
+  padding: 40px 20px;
   text-align: center;
 }
 
-.product-main h2 {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #222;
+/* Media Queries pour le responsive design */
+@media (max-width: 768px) {
+  .small-menu ul {
+    flex-direction: column; /* Column layout for small screens */
+  }
+
+  .nav-links ul {
+    flex-direction: column; /* Column layout for small screens */
+  }
+
+  .shoes-carousel-image {
+    width: 100%; /* Full width for small screens */
+  }
+
+  .sports-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller columns */
+  }
+
+  .category-card {
+    width: 90%; /* Full width for small screens */
+  }
 }
 
-.product-main img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 20px;
-  border-radius: 10px;
-}
-
-.product-main p {
-  font-size: 16px;
-  color: #666;
-  line-height: 1.5;
-}
-
-/* Right section - Sizes and Add to Cart */
-.product-sizes {
-  flex: 1;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.product-sizes h3 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.sizes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.size-button {
-  padding: 10px 15px;
-  font-size: 16px;
-  border: 2px solid #333;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.size-button.selected {
-  background-color: #333;
-  color: #fff;
-}
-
-.size-button:hover {
-  background-color: #f0f0f0;
-}
-
-.add-to-cart-button {
-  display: inline-block;
-  padding: 15px 25px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-  background-color: #FF6F61;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-}
-
-.add-to-cart-button:hover {
-  background-color: #ff5a4f;
-}

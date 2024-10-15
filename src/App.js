@@ -39,9 +39,7 @@ function App() {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextImage();
-    }, 5000);
+    const interval = setInterval(nextImage, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -55,9 +53,7 @@ function App() {
     setPage('category');
   };
 
-  const handleSizeClick = (size) => {
-    setSelectedSize(size);
-  };
+  const handleSizeClick = (size) => setSelectedSize(size);
 
   const handleAddToCart = () => {
     if (selectedSize) {
@@ -89,14 +85,26 @@ function App() {
       <div className="shoes-carousel-container">
         <h2>Nike Shoes</h2>
         <div className="shoes-carousel" style={{ transform: getShoesTransformValue() }}>
-          {shoesImages.map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt={`Shoe ${index + 1}`}
-              className="shoes-carousel-image"
-              onClick={() => handleProductClick({ name: `Shoe ${index + 1}`, image, sizes: ['38', '39', '40', '41', '42'] })}
-            />
+          {shoesImages.map((shoe, index) => (
+            <div key={index} className="shoe-item">
+              <img
+                src={shoe.image}
+                alt={shoe.name}
+                className="shoes-carousel-image"
+                onClick={() =>
+                  handleProductClick({
+                    name: shoe.name,
+                    image: shoe.image,
+                    sizes: ['38', '39', '40', '41', '42'],
+                    price: shoe.price,
+                  })
+                }
+              />
+              <div className="shoe-info">
+                <p className="shoe-name">{shoe.name}</p>
+                <p className="shoe-price">{shoe.price}€</p>
+              </div>
+            </div>
           ))}
         </div>
         <div>
@@ -105,7 +113,6 @@ function App() {
         </div>
       </div>
 
-      {}
       <div className="sports-section">
         <h2 className="sports-title">Our Sports</h2>
         <div className="sports-grid">
@@ -120,7 +127,6 @@ function App() {
         </div>
       </div>
 
-      {}
       <div className="categories-section">
         <h2 className="categories-title">Nos Catégories</h2>
         <div className="categories-grid">
@@ -128,7 +134,7 @@ function App() {
             <div className="category-card" key={index} style={{ backgroundImage: `url(${category.image})` }}>
               <div className="category-overlay" onClick={() => handleCategoryClick(category)}>
                 <h3>{category.name}</h3>
-                <button>Voir {category.name}</button>
+                <button className="action-button">Voir {category.name}</button>
               </div>
             </div>
           ))}
@@ -141,25 +147,15 @@ function App() {
     <div className="product-details">
       <div className="product-filters">
         <h3>Filters</h3>
-        <label>
-          <input type="checkbox" />
-          chaussure
-        </label>
-        <label>
-          <input type="checkbox" />
-          maillot 
-        </label>
-        <label>
-          <input type="checkbox" />
-          fournitures scolaire
-        </label>
-        {}
+        <label><input type="checkbox" /> chaussure</label>
+        <label><input type="checkbox" /> maillot</label>
+        <label><input type="checkbox" /> fournitures scolaire</label>
       </div>
 
       <div className="product-main">
         <h2>{selectedProduct.name}</h2>
         <img src={selectedProduct.image} alt={selectedProduct.name} />
-        <p>Dunk Barcelona</p>
+        <p>{selectedProduct.description}</p>
       </div>
 
       <div className="product-sizes">
@@ -217,7 +213,7 @@ function App() {
         </div>
 
         <div className="middle-header">
-          <div className="nike">
+          <div className="nike" onClick={() => setPage('home')}>
             <a href="#">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/2560px-Logo_NIKE.svg.png" alt="Nike Logo" />
             </a>
@@ -240,12 +236,14 @@ function App() {
           </nav>
         </div>
       </header>
-
       <main>
         {page === 'home' && renderHomePage()}
         {page === 'product' && renderProductPage()}
         {page === 'category' && renderCategoryPage()}
       </main>
+      <footer>
+        <p>© 2024 Nike, Inc. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

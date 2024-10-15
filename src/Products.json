@@ -6,10 +6,26 @@
       "https://via.placeholder.com/1920x800?text=Image+4"
     ],
     "shoesImages": [
-      "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTZ-2bseiUy27iGDfiOT2HaBe1QUaE_ZJ9OYd5K33lY22bRF3NH0r1kgVgyIkQW22GVylG30EtBIH4ITUgl_HZupF0jD-VOR8kLfdhV45siVe4IQafEB61I_pYvN2QKuzs4HHbUne4&usqp=CAc",
-      "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQVDM6lEMSzK5b837P3LT4hbVVDyxqPdGydXpOkH0S1b5ZoMTJAbIlwNYdomsijZL1aU1bhje-Q8aJZWbS_JU_345aCOl5GM59URTjyDg7oY2fZn-sZY1rRukGUSUnnP5IceTcKfeI&usqp=CAc",
-      "https://static.nike.com/a/images/t_default/e62a8575-6c96-4532-9780-63fc64d75a48/nikecourt-zoom-vapor-pro-2-hard-court-tennis-shoes-pvqmgl.png",
-      "https://www.kicksusa.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/N/I/NIKE_SNEAKER_002_NIAR9293_001.png"
+      {
+        "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTZ-2bseiUy27iGDfiOT2HaBe1QUaE_ZJ9OYd5K33lY22bRF3NH0r1kgVgyIkQW22GVylG30EtBIH4ITUgl_HZupF0jD-VOR8kLfdhV45siVe4IQafEB61I_pYvN2QKuzs4HHbUne4&usqp=CAc",
+        "name": "Nike Air Max",
+        "price": 120
+      },
+      {
+        "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQVDM6lEMSzK5b837P3LT4hbVVDyxqPdGydXpOkH0S1b5ZoMTJAbIlwNYdomsijZL1aU1bhje-Q8aJZWbS_JU_345aCOl5GM59URTjyDg7oY2fZn-sZY1rRukGUSUnnP5IceTcKfeI&usqp=CAc",
+        "name": "Nike Air Force 1",
+        "price": 100
+      },
+      {
+        "image": "https://static.nike.com/a/images/t_default/e62a8575-6c96-4532-9780-63fc64d75a48/nikecourt-zoom-vapor-pro-2-hard-court-tennis-shoes-pvqmgl.png",
+        "name": "Nike Zoom Vapor",
+        "price": 130
+      },
+      {
+        "image": "https://www.kicksusa.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/N/I/NIKE_SNEAKER_002_NIAR9293_001.png",
+        "name": "Nike React Infinity",
+        "price": 140
+      }
     ],
     "sports": [
       { "name": "Football", "image": "https://assets-fr.imgfoot.com/barca-65da1f2d62919.jpg" },
