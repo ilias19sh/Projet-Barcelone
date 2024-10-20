@@ -8,7 +8,7 @@ function App() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentShoesIndex, setCurrentShoesIndex] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('all'); 
   const [selectedSize, setSelectedSize] = useState(null);
 
   const getTransformValue = () => `translateX(-${currentImageIndex * 100}%)`;
@@ -49,7 +49,7 @@ function App() {
   };
 
   const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
+    setSelectedCategory(category.name);
     setPage('category');
   };
 
@@ -61,6 +61,13 @@ function App() {
     } else {
       alert('Please select a size before adding to cart.');
     }
+  };
+
+  const filterProducts = () => {
+    if (selectedCategory === 'all') {
+      return shoesImages;
+    }
+    return shoesImages.filter((product) => product.type === selectedCategory);
   };
 
   const renderHomePage = () => (
@@ -83,7 +90,7 @@ function App() {
       </div>
 
       <div className="shoes-carousel-container">
-        <h2>Nike Shoes</h2>
+        <h2>Nike product</h2>
         <div className="shoes-carousel" style={{ transform: getShoesTransformValue() }}>
           {shoesImages.map((shoe, index) => (
             <div key={index} className="shoe-item">
@@ -193,6 +200,77 @@ function App() {
     </div>
   );
 
+  const renderAllProductsPage = () => (
+    <div className="products-page">
+      {}
+      <div className="filter-section">
+        <h3>Filtres</h3>
+        <div>
+          <label>
+            <input
+              type="radio"
+              name="category"
+              value="all"
+              checked={selectedCategory === 'all'}
+              onChange={() => setSelectedCategory('all')}
+            />
+            Tous les produits
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="radio"
+              name="category"
+              value="chaussure"
+              checked={selectedCategory === 'chaussure'}
+              onChange={() => setSelectedCategory('chaussure')}
+            />
+            Chaussures
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="radio"
+              name="category"
+              value="fourniture"
+              checked={selectedCategory === 'fourniture'}
+              onChange={() => setSelectedCategory('fourniture')}
+            />
+            Fournitures
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="radio"
+              name="category"
+              value="sport"
+              checked={selectedCategory === 'sport'}
+              onChange={() => setSelectedCategory('sport')}
+            />
+            Sports
+          </label>
+        </div>
+      </div>
+
+      {}
+      <div className="products-section">
+        <h2>Nos Produits</h2>
+        <div className="products-grid">
+          {filterProducts().map((shoe, index) => (
+            <div key={index} className="product-card" onClick={() => handleProductClick(shoe)}>
+              <img src={shoe.image} alt={shoe.name} className="product-image"/>
+              <h3>{shoe.name}</h3>
+              <p>{shoe.price}€</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="App">
       <header>
@@ -207,7 +285,8 @@ function App() {
               <li><a href="#">Find a store |</a></li>
               <li><a href="#">Assistance |</a></li>
               <li><a href="#">Commandes |</a></li>
-              <li><a href="#">S'inscrire</a></li>
+              <li><a href="#">S'inscrire |</a></li>
+              <li><a href="#" onClick={() => setPage('all-products')}>Product</a></li>
             </ul>
           </nav>
         </div>
@@ -240,6 +319,7 @@ function App() {
         {page === 'home' && renderHomePage()}
         {page === 'product' && renderProductPage()}
         {page === 'category' && renderCategoryPage()}
+        {page === 'all-products' && renderAllProductsPage()}
       </main>
       <footer>
         <p>© 2024 Nike, Inc. All rights reserved.</p>
