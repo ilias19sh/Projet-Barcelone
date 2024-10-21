@@ -8,6 +8,7 @@ function App() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentShoesIndex, setCurrentShoesIndex] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedSport, setSelectedSport] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all'); 
   const [selectedSize, setSelectedSize] = useState(null);
 
@@ -62,6 +63,11 @@ function App() {
       alert('Please select a size before adding to cart.');
     }
   };
+  const handleSportClick = (sport) => {
+    setSelectedSport(sport);
+    setPage('sport');
+  };
+  
 
   const filterProducts = () => {
     if (selectedCategory === 'all') {
@@ -125,7 +131,7 @@ function App() {
         <div className="sports-grid">
           {sports.map((sport, index) => (
             <div className="sport-card" key={index} style={{ backgroundImage: `url(${sport.image})` }}>
-              <div className="overlay" onClick={() => handleCategoryClick(sport)}>
+        <div className="overlay" onClick={() => handleSportClick(sport)}>
                 <h3>{sport.name}</h3>
                 <button>Shop {sport.name}</button>
               </div>
@@ -270,7 +276,30 @@ function App() {
       </div>
     </div>
   );
+  const renderSportPage = () => (
+    <div className="sport-page">
+        <h2>{selectedSport.name}</h2>
+        <div className="sport-banner">
+            <img src={selectedSport.image} alt={selectedSport.name} />
+        </div>
+        <div className="products-section">
+        <h2>Nos Produits</h2>
+        <div className="products-grid">
+          {filterProducts().map((shoe, index) => (
+            <div key={index} className="product-card" onClick={() => handleProductClick(shoe)}>
+              <img src={shoe.image} alt={shoe.name} className="product-image"/>
+              <h3>{shoe.name}</h3>
+              <p>{shoe.price}€</p>
+            </div>
+          ))}
+        </div>
+      </div>
+        <p>Découvrez les meilleurs produits pour {selectedSport.name} !</p>
+        <button onClick={() => setPage('home')}>Retour à l'accueil</button>
+    </div>
+);
 
+  
   return (
     <div className="App">
       <header>
@@ -320,6 +349,7 @@ function App() {
         {page === 'product' && renderProductPage()}
         {page === 'category' && renderCategoryPage()}
         {page === 'all-products' && renderAllProductsPage()}
+        {page === 'sport' && renderSportPage()}
       </main>
       <footer>
         <p>© 2024 Nike, Inc. All rights reserved.</p>
