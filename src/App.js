@@ -70,11 +70,23 @@ function App() {
   
 
   const filterProducts = () => {
+    console.log("selectedCategory:", selectedCategory); // Vérifiez la valeur de selectedCategory
+    console.log("shoesImages:", shoesImages); // Vérifiez le contenu de shoesImages
+  
     if (selectedCategory === 'all') {
-      return shoesImages;
+      return shoesImages; // Afficher tous les produits
     }
+  
+    // Vérifiez que chaque produit a une propriété category
+    shoesImages.forEach((product) => {
+      console.log("product.category:", product.type); // Vérifiez la propriété type de chaque produit
+    });
+  
+    // Filtrer par catégorie
     return shoesImages.filter((product) => product.type === selectedCategory);
   };
+  
+
 
   const renderHomePage = () => (
     <div>
@@ -208,7 +220,6 @@ function App() {
 
   const renderAllProductsPage = () => (
     <div className="products-page">
-      {}
       <div className="filter-section">
         <h3>Filtres</h3>
         <div>
@@ -260,6 +271,21 @@ function App() {
           </label>
         </div>
       </div>
+  
+      <div className="products-section">
+        <h2>Nos Produits</h2>
+        <div className="products-grid">
+          {filterProducts().map((shoe, index) => (
+            <div key={index} className="product-card" onClick={() => handleProductClick(shoe)}>
+              <img src={shoe.image} alt={shoe.name} className="product-image" />
+              <h3>{shoe.name}</h3>
+              <p>{shoe.price}€</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );  
 
       {}
       <div className="products-section">
@@ -274,8 +300,7 @@ function App() {
           ))}
         </div>
       </div>
-    </div>
-  );
+
   const renderSportPage = () => (
     <div className="sport-page">
         <h2>{selectedSport.name}</h2>
@@ -283,17 +308,17 @@ function App() {
             <img src={selectedSport.image} alt={selectedSport.name} />
         </div>
         <div className="products-section">
-        <h2>Nos Produits</h2>
-        <div className="products-grid">
-          {filterProducts().map((shoe, index) => (
-            <div key={index} className="product-card" onClick={() => handleProductClick(shoe)}>
-              <img src={shoe.image} alt={shoe.name} className="product-image"/>
-              <h3>{shoe.name}</h3>
-              <p>{shoe.price}€</p>
+            <h2>Nos Produits</h2>
+            <div className="products-grid">
+                {filterProducts(selectedSport.type).map((shoe, index) => (
+                    <div key={index} className="product-card" onClick={() => handleProductClick(shoe)}>
+                        <img src={shoe.image} alt={shoe.name} className="product-image"/>
+                        <h3>{shoe.name}</h3>
+                        <p>{shoe.price}€</p>
+                    </div>
+                ))}
             </div>
-          ))}
         </div>
-      </div>
         <p>Découvrez les meilleurs produits pour {selectedSport.name} !</p>
         <button onClick={() => setPage('home')}>Retour à l'accueil</button>
     </div>
@@ -352,7 +377,7 @@ function App() {
         {page === 'sport' && renderSportPage()}
       </main>
       <footer>
-        <p>© 2024 Nike, Inc. All rights reserved.</p>
+        <p>&copy; 2024 Nike Store. All rights reserved.</p>
       </footer>
     </div>
   );
