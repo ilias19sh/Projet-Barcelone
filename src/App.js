@@ -331,66 +331,53 @@ const renderSportPage = () => (
 );
 
 const Men = () => {
-  const menProducts = filterProducts().filter(product => product.gender === "men"); // Assurez-vous que votre produit a un attribut 'gender'
-  return (
-      <div>
-          <h2>Men's Products</h2>
-          {menProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-          ))}
-      </div>
-  );
+  const menProducts = filterProducts().filter(product => product.sexe === "men");
+  
+  return renderProductPage1("Produits pour Hommes", menProducts);
 };
 
 const Women = () => {
-  const womenProducts = filterProducts().filter(product => product.gender === "women");
-  return (
-      <div>
-          <h2>Women's Products</h2>
-          {womenProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-          ))}
-      </div>
-  );
+  const womenProducts = filterProducts().filter(product => product.sexe === "women");
+  
+  return renderProductPage1("Produits pour Femmes", womenProducts);
 };
 
 const Kids = () => {
-  const kidsProducts = filterByGender("kids");
-  return (
-      <div>
-          <h2>Kids' Products</h2>
-          {kidsProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-          ))}
-      </div>
-  );
+  const kidsProducts = filterProducts().filter(product => product.sexe === "kids");
+  
+  return renderProductPage1("Produits pour Enfants", kidsProducts);
 };
 
-// Ajoute une fonction pour gérer les nouveaux produits ou les soldes si nécessaire
 const NewReleases = () => {
-  const newProducts = filterProducts("new"); // Crée une fonction de filtrage similaire pour les nouvelles sorties
-  return (
-      <div>
-          <h2>New Releases</h2>
-          {newProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-          ))}
-      </div>
-  );
+  const newProducts = filterProducts("new");
+  
+  return renderProductPage1("Nouvelles Sorties", newProducts);
 };
 
 const Sale = () => {
-  const saleProducts = filterProducts("sale"); // Crée une fonction de filtrage pour les soldes
-  return (
-      <div>
-          <h2>Sale Products</h2>
-          {saleProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-          ))}
-      </div>
-  );
+  const saleProducts = filterProducts("sale");
+  
+  return renderProductPage1("Produits en Soldes", saleProducts);
 };
 
+// Fonction pour rendre la page de produits
+const renderProductPage1 = (title, products) => (
+  <div className="product-page">
+      <h2>{title}</h2>
+      <div className="products-section">
+          <div className="products-grid">
+              {products.map(product => (
+                  <div key={product.id} className="product-card">
+                      <img src={product.image} alt={product.name} className="product-image" />
+                      <h3>{product.name}</h3>
+                      <p>{product.price}€</p>
+                  </div>
+              ))}
+          </div>
+      </div>
+      <button className="action-button" onClick={() => setPage('home')}>Retour à l'accueil</button>
+  </div>
+);
 
 const filterByGender = (gender) => {
   if (gender === "all") {
@@ -429,6 +416,7 @@ const filterByGender = (gender) => {
           </div>
           
           <nav className="big-menu">
+              <Link to="/">Home</Link>
                 <Link to="/new-releases">New Releases</Link>
                 <Link to="/men">Men</Link>
                 <Link to="/women">Women</Link>
