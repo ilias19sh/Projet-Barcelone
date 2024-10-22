@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import productData from './products.json';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import ProductCard from './component/ProductCard'; // Ensure this path is correct
 
 function App() {
   const { carouselImages, shoesImages, sports, categories } = productData;
@@ -50,7 +52,7 @@ function App() {
   };
 
   const handleCategoryClick = (category) => {
-    setSelectedCategory(category.name.toLowerCase());
+    setSelectedCategory(category.name);
     setPage('category');
   };
 
@@ -63,38 +65,32 @@ function App() {
       alert('Please select a size before adding to cart.');
     }
   };
-  
   const handleSportClick = (sport) => {
     setSelectedSport(sport);
     setSelectedCategory(sport.name.toLowerCase()); 
     setPage('sport');
     console.log('sport :', sport); 
   };
+  
+  
+  
 
   const filterProducts = () => {
     console.log("selectedCategory:", selectedCategory); // Vérifiez la valeur de selectedCategory
     console.log("shoesImages:", shoesImages); // Vérifiez le contenu de shoesImages
-
-    let category = selectedCategory;
-
-    // Mapping French category to product type
-    const categoryMapping = {
-      'chaussure': 'sneakers',
-      // Ajoutez d'autres mappings si nécessaire
-    };
-
-    if (categoryMapping[category]) {
-      category = categoryMapping[category];
+  
+    if (selectedCategory === 'all') {
+      return shoesImages; // Afficher tous les produits
     }
-
-    if (category === 'all') {
-      return shoesImages;
-    }
-
-    return shoesImages.filter(product => product.type.toLowerCase() === category);
+  
+    // Filtrer les produits en comparant `type` en minuscules
+    return shoesImages.filter(product => product.type.toLowerCase() === selectedCategory);
   };
+  
+  
+  
+  console.log(selectedSport)
 
-  console.log("selectedSport:", selectedSport);
 
   const renderHomePage = () => (
     <div>
@@ -151,7 +147,7 @@ function App() {
         <div className="sports-grid">
           {sports.map((sport, index) => (
             <div className="sport-card" key={index} style={{ backgroundImage: `url(${sport.image})` }}>
-              <div className="overlay" onClick={() => handleSportClick(sport)}>
+        <div className="overlay" onClick={() => handleSportClick(sport)}>
                 <h3>{sport.name}</h3>
                 <button>Shop {sport.name}</button>
               </div>
@@ -227,6 +223,7 @@ function App() {
       <button onClick={() => setPage('home')}>Retour</button>
     </div>
   );
+  
 
   const renderAllProductsPage = () => (
     <div className="products-page">
@@ -297,30 +294,114 @@ function App() {
     </div>
   );  
 
-  const renderSportPage = () => (
-    <div className="sport-page">
-        <h2>{selectedSport.name}</h2>
-        <div className="sport-banner">
-            <img src={selectedSport.image} alt={selectedSport.name} />
-        </div>
-        <div className="products-section">
-            <h2>Nos Produits pour {selectedSport.name}</h2>
-            <div className="products-grid">
-                {filterProducts().map((shoe, index) => (
-                    <div key={index} className="product-card" onClick={() => handleProductClick(shoe)}>
-                        <img src={shoe.image} alt={shoe.name} className="product-image"/>
-                        <h3>{shoe.name}</h3>
-                        <p>{shoe.price}€</p>
-                    </div>
-                ))}
+      {}
+      <div className="products-section">
+        <h2>Nos Produits</h2>
+        <div className="products-grid">
+          {filterProducts().map((shoe, index) => (
+            <div key={index} className="product-card" onClick={() => handleProductClick(shoe)}>
+              <img src={shoe.image} alt={shoe.name} className="product-image"/>
+              <h3>{shoe.name}</h3>
+              <p>{shoe.price}€</p>
             </div>
+          ))}
         </div>
-        <button onClick={() => setPage('home')}>Retour à l'accueil</button>
-    </div>
+      </div>
+
+const renderSportPage = () => (
+  <div className="sport-page">
+      <h2>{selectedSport.name}</h2>
+      <div className="sport-banner">
+          <img src={selectedSport.image} alt={selectedSport.name} />
+      </div>
+      <div className="products-section">
+          <h2>Nos Produits pour {selectedSport.name}</h2>
+          <div className="products-grid">
+              {filterProducts().map((shoe, index) => (
+                  <div key={index} className="product-card" onClick={() => handleProductClick(shoe)}>
+                      <img src={shoe.image} alt={shoe.name} className="product-image"/>
+                      <h3>{shoe.name}</h3>
+                      <p>{shoe.price}€</p>
+                  </div>
+              ))}
+          </div>
+      </div>
+      <button onClick={() => setPage('home')}>Retour à l'accueil</button>
+  </div>
+);
+
+const Men = () => {
+  const menProducts = filterProducts().filter(product => product.gender === "men"); // Assurez-vous que votre produit a un attribut 'gender'
+  return (
+      <div>
+          <h2>Men's Products</h2>
+          {menProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+          ))}
+      </div>
   );
+};
+
+const Women = () => {
+  const womenProducts = filterProducts().filter(product => product.gender === "women");
+  return (
+      <div>
+          <h2>Women's Products</h2>
+          {womenProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+          ))}
+      </div>
+  );
+};
+
+const Kids = () => {
+  const kidsProducts = filterByGender("kids");
+  return (
+      <div>
+          <h2>Kids' Products</h2>
+          {kidsProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+          ))}
+      </div>
+  );
+};
+
+// Ajoute une fonction pour gérer les nouveaux produits ou les soldes si nécessaire
+const NewReleases = () => {
+  const newProducts = filterProducts("new"); // Crée une fonction de filtrage similaire pour les nouvelles sorties
+  return (
+      <div>
+          <h2>New Releases</h2>
+          {newProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+          ))}
+      </div>
+  );
+};
+
+const Sale = () => {
+  const saleProducts = filterProducts("sale"); // Crée une fonction de filtrage pour les soldes
+  return (
+      <div>
+          <h2>Sale Products</h2>
+          {saleProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+          ))}
+      </div>
+  );
+};
+
+
+const filterByGender = (gender) => {
+  if (gender === "all") {
+      return shoesImages; // Retourne tous les produits si "all" est sélectionné
+  }
+  return shoesImages.filter(product => product.gender === gender); // Filtre par genre
+};
 
   
   return (
+    <Router>
     <div className="App">
       <header>
         <div className="top-header">
@@ -339,22 +420,24 @@ function App() {
             </ul>
           </nav>
         </div>
-
+        
         <div className="middle-header">
           <div className="nike" onClick={() => setPage('home')}>
             <a href="#">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/2560px-Logo_NIKE.svg.png" alt="Nike Logo" />
             </a>
           </div>
-          <nav className="nav-links">
-            <ul>
-              <li><a href="#">New Releases</a></li>
-              <li><a href="#">Men</a></li>
-              <li><a href="#">Women</a></li>
-              <li><a href="#">Kids</a></li>
-              <li><a href="#">Sale</a></li>
-            </ul>
-          </nav>
+          
+          <nav className="big-menu">
+                <Link to="/new-releases">New Releases</Link>
+                <Link to="/men">Men</Link>
+                <Link to="/women">Women</Link>
+                <Link to="/kids">Kids</Link>
+                <Link to="/sale">Sale</Link>
+            </nav>
+
+      
+    
           <nav className="icons">
             <ul>
               <li><a href="#">🔍</a></li>
@@ -363,8 +446,16 @@ function App() {
             </ul>
           </nav>
         </div>
+        
       </header>
       <main>
+      <Routes>
+                <Route path="/new-releases" element={<NewReleases />} />
+                <Route path="/men" element={<Men />} />
+                <Route path="/women" element={<Women />} />
+                <Route path="/kids" element={<Kids />} />
+                <Route path="/sale" element={<Sale />} />
+            </Routes>
         {page === 'home' && renderHomePage()}
         {page === 'product' && renderProductPage()}
         {page === 'category' && renderCategoryPage()}
@@ -375,6 +466,7 @@ function App() {
         <p>&copy; 2024 Nike Store. All rights reserved.</p>
       </footer>
     </div>
+    </Router>
   );
 }
 
