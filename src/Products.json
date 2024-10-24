@@ -69,7 +69,15 @@
       "price": 90,
         "type" : "basketball",
         "sexe" : "men"
+    },
+    {
+      "image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcT2AWnAeAXPnz5ytXIz082DPH8HQTMEM8nqqe0Xjx9yzjPbbxHCmjMwoQiUoP216sSnGH6z5suOYdER7XiFVYAOf509aCwYnwJBHzCb5kXT-FpNLD8joCvwDTl_LMocdHDzYHNgufoLDik&usqp=CAc",
+      "name": "Trousse Fc Barcelone",
+      "price": 90,
+        "type" : "fournitures",
+        "sexe" : "Kids"
     }
+
 
 
     ],

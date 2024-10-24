@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import productData from './products.json';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import ProductCard from './component/ProductCard'; // Ensure this path is correct
 
 function App() {
   const { carouselImages, shoesImages, sports, categories } = productData;
@@ -76,16 +75,17 @@ function App() {
   
 
   const filterProducts = () => {
-    console.log("selectedCategory:", selectedCategory); // Vérifiez la valeur de selectedCategory
-    console.log("shoesImages:", shoesImages); // Vérifiez le contenu de shoesImages
-  
+    console.log("selectedCategory:", selectedCategory); // Pour débugger
+    console.log("shoesImages:", shoesImages); // Pour vérifier les données
+    
     if (selectedCategory === 'all') {
-      return shoesImages; // Afficher tous les produits
+      return shoesImages; // Retourne tous les produits si "all" est sélectionné
     }
   
-    // Filtrer les produits en comparant `type` en minuscules
+    // Filtrage par type de produit
     return shoesImages.filter(product => product.type.toLowerCase() === selectedCategory);
   };
+  
   
   
   
@@ -207,6 +207,8 @@ function App() {
     </div>
   );
 
+  
+
   const renderCategoryPage = () => (
     <div>
       <h2>{selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}</h2>
@@ -246,9 +248,9 @@ function App() {
             <input
               type="radio"
               name="category"
-              value="chaussure"
-              checked={selectedCategory === 'chaussure'}
-              onChange={() => setSelectedCategory('chaussure')}
+              value="sneakers"
+              checked={selectedCategory === 'sneakers'}
+              onChange={() => setSelectedCategory('sneakers')}
             />
             Chaussures
           </label>
@@ -259,8 +261,8 @@ function App() {
               type="radio"
               name="category"
               value="fourniture"
-              checked={selectedCategory === 'fourniture'}
-              onChange={() => setSelectedCategory('fourniture')}
+              checked={selectedCategory === 'fournitures'}
+              onChange={() => setSelectedCategory('fournitures')}
             />
             Fournitures
           </label>
@@ -272,7 +274,7 @@ function App() {
               name="category"
               value="sport"
               checked={selectedCategory === 'sport'}
-              onChange={() => setSelectedCategory('sport')}
+              onChange={() => setSelectedCategory('football','voleyball','basketball','handball')}
             />
             Sports
           </label>
@@ -282,31 +284,30 @@ function App() {
       <div className="products-section">
         <h2>Nos Produits</h2>
         <div className="products-grid">
-          {filterProducts().map((shoe, index) => (
-            <div key={index} className="product-card" onClick={() => handleProductClick(shoe)}>
-              <img src={shoe.image} alt={shoe.name} className="product-image" />
-              <h3>{shoe.name}</h3>
-              <p>{shoe.price}€</p>
+          {filterProducts().map((product, index) => (
+            <div
+              key={index}
+              className="product-card"
+              onClick={() =>
+                handleProductClick({
+                  name: product.name,
+                  image: product.image,
+                  sizes: ['38', '39', '40', '41', '42'], // Ajout des tailles
+                  price: product.price,
+                })
+              }
+            >
+              <img src={product.image} alt={product.name} className="product-image" />
+              <h3>{product.name}</h3>
+              <p>{product.price}€</p>
             </div>
           ))}
         </div>
       </div>
     </div>
-  );  
-
-      {}
-      <div className="products-section">
-        <h2>Nos Produits</h2>
-        <div className="products-grid">
-          {filterProducts().map((shoe, index) => (
-            <div key={index} className="product-card" onClick={() => handleProductClick(shoe)}>
-              <img src={shoe.image} alt={shoe.name} className="product-image"/>
-              <h3>{shoe.name}</h3>
-              <p>{shoe.price}€</p>
-            </div>
-          ))}
-        </div>
-      </div>
+  );
+  
+  
 
 const renderSportPage = () => (
   <div className="sport-page">
